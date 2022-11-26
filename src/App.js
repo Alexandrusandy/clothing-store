@@ -40,17 +40,14 @@ class App extends Component {
 
   render() {
     return (
-      console.log('state', this.state),
-      (
-        <div>
-          <Header der currentUser={this.state.currentUser} />
-          <Routes>
-            <Route exact path="/" element={<HomePage />} />
-            <Route exact path="/shop" element={<ShopPage />} />
-            <Route exact path="/signin" element={<SignInAndSignUpPage />} />
-          </Routes>
-        </div>
-      )
+      <div>
+        <Header der currentUser={this.state.currentUser} />
+        <Routes>
+          <Route exact path="/" element={<HomePage />} />
+          <Route exact path="/shop" element={<ShopPage />} />
+          <Route exact path="/signin" element={<SignInAndSignUpPage />} />
+        </Routes>
+      </div>
     );
   }
 }
