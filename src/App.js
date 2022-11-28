@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import HomePage from './pages/homepage/homepage';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import ShopPage from './pages/shop/shopPage';
 import Header from './componenets/header/header';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up';
@@ -36,20 +36,37 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <Header />
-        <Routes>
-          <Route exact path="/" element={<HomePage />} />
-          <Route exact path="/shop" element={<ShopPage />} />
-          <Route exact path="/signin" element={<SignInAndSignUpPage />} />
-        </Routes>
-      </div>
+      console.log('this.props.currentuser', this.props.currentUser),
+      (
+        <div>
+          <Header />
+          <Routes>
+            <Route exact path="/" element={<HomePage />} />
+            <Route exact path="/shop" element={<ShopPage />} />
+            <Route
+              exact
+              path={'/signin'}
+              element={
+                this.props.currentUser ? (
+                  <Navigate to="/" />
+                ) : (
+                  <SignInAndSignUpPage />
+                )
+              }
+            />
+          </Routes>
+        </div>
+      )
     );
   }
 }
+
+const mapStateToProps = ({ user }) => ({
+  currentUser: user.currentUser,
+});
 
 const mapDispatchtoProps = (dispatch) => ({
   setCurrentUser: (user) => dispatch(setCurrentUser(user)),
 });
 
-export default connect(null, mapDispatchtoProps)(App);
+export default connect(mapStateToProps, mapDispatchtoProps)(App);
