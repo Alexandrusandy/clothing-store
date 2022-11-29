@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import HomePage from './pages/homepage/homepage';
-import { Routes, Route, Navigate } from 'react-router-dom';
-import ShopPage from './pages/shop/shopPage';
 import Header from './componenets/header/header';
+import { Routes, Route, Navigate } from 'react-router-dom';
+
+import ShopPage from './pages/shop/shopPage';
+import HomePage from './pages/homepage/homepage';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up';
+import CheckoutPage from './pages/checkout/checkout';
 
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import { connect } from 'react-redux';
@@ -44,7 +46,7 @@ class App extends Component {
           <Header />
           <Routes>
             <Route exact path="/" element={<HomePage />} />
-            <Route exact path="/shop" element={<ShopPage />} />
+            <Route path="/shop" element={<ShopPage />} />
             <Route
               exact
               path={'/signin'}
@@ -56,6 +58,7 @@ class App extends Component {
                 )
               }
             />
+            <Route exact path="/checkout" element={<CheckoutPage />} />
           </Routes>
         </div>
       )
