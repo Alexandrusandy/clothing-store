@@ -40,28 +40,25 @@ class App extends Component {
 
   render() {
     return (
-      console.log('this.props.currentuser', this.props.currentUser),
-      (
-        <div>
-          <Header />
-          <Routes>
-            <Route exact path="/" element={<HomePage />} />
-            <Route path="/shop" element={<ShopPage />} />
-            <Route
-              exact
-              path={'/signin'}
-              element={
-                this.props.currentUser ? (
-                  <Navigate to="/" />
-                ) : (
-                  <SignInAndSignUpPage />
-                )
-              }
-            />
-            <Route exact path="/checkout" element={<CheckoutPage />} />
-          </Routes>
-        </div>
-      )
+      <div>
+        <Header />
+        <Routes>
+          <Route exact path="/" element={<HomePage />} />
+          <Route path="/shop" element={<ShopPage />} />
+          <Route
+            exact
+            path={'/signin'}
+            element={
+              this.props.currentUser ? (
+                <Navigate to="/" />
+              ) : (
+                <SignInAndSignUpPage />
+              )
+            }
+          />
+          <Route exact path="/checkout" element={<CheckoutPage />} />
+        </Routes>
+      </div>
     );
   }
 }
