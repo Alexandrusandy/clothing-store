@@ -3,7 +3,7 @@ import './App.css';
 import Header from './componenets/header/header';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
-import ShopPage from './pages/shop/shopPage';
+// import ShopPage from './pages/shop/shopPage';
 import HomePage from './pages/homepage/homepage';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up';
 import CheckoutPage from './pages/checkout/checkout';
@@ -13,6 +13,7 @@ import { connect } from 'react-redux';
 import { setCurrentUser } from './redux/user/user.actions';
 import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from './redux/user/user.selector';
+import ShopPageWrapper from './pages/shop/ShopPageWrapper';
 
 class App extends Component {
   unsubscribeFromAuth = null;
@@ -44,7 +45,7 @@ class App extends Component {
         <Header />
         <Routes>
           <Route exact path="/" element={<HomePage />} />
-          <Route exact path="/shop/*" element={<ShopPage />} />
+          <Route exact path="/shop/*" element={<ShopPageWrapper />} />
           <Route
             exact
             path={'/signin'}
