@@ -4,7 +4,6 @@ import ShopPage from './shopPage';
 
 const ShopPageWrapper = () => {
   const params = useParams();
-  console.log('params', params);
   return (
     <div>
       <ShopPage params={params} />
