@@ -21,7 +21,7 @@ class ShopPage extends React.Component {
   render() {
     const { params, isCollectionFetching } = this.props;
     return (
-      <div className="shop-page">
+      <div>
         <Routes>
           <Route
             exact
