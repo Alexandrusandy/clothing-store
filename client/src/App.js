@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import './App.css';
 import Header from './componenets/header/header';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
@@ -11,6 +10,7 @@ import CheckoutPage from './pages/checkout/checkout';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCurrentUser } from './redux/user/user.selector';
 import { checkUserSession } from './redux/user/user.actions';
+import { GlobalStyle } from './global.styles';
 
 const App = () => {
   const currentUser = useSelector(selectCurrentUser);
@@ -22,6 +22,7 @@ const App = () => {
 
   return (
     <div>
+      <GlobalStyle />
       <Header />
       <Routes>
         <Route exact path="/" element={<HomePage />} />

@@ -7,7 +7,6 @@ import {
   PreviewContainer,
 } from './collection-preview.styles';
 
-import './collection-preview.styles.scss';
 
 const CollectionPreview = ({ title, items, routeName }) => {
   const navigate = useNavigate();
