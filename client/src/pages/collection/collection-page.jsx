@@ -5,7 +5,7 @@ import { selectCollection } from '../../redux/shop/shop.selectors';
 import CollectionItem from '../../componenets/collection-item/collection-item';
 import {
   CollectionPageContainer,
-  CollectionPageItemsContainer,
+  CollectionItemsContainer,
   CollectionTitle,
 } from './collection-page.styles';
 import { useParams } from 'react-router-dom';
@@ -18,11 +18,11 @@ const CollectionPage = () => {
   return (
     <CollectionPageContainer>
       <CollectionTitle>{title}</CollectionTitle>
-      <CollectionPageItemsContainer>
+      <CollectionItemsContainer>
         {items.map((item) => (
           <CollectionItem key={item.id} item={item} />
         ))}
-      </CollectionPageItemsContainer>
+      </CollectionItemsContainer>
     </CollectionPageContainer>
   );
 };
