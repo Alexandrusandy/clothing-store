@@ -1,11 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { lazy, Suspense, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { fetchCollectionsStart } from '../../redux/shop/shop.actions';
 
-import CollectionsOverviewContainer from '../../componenets/collections-overview/collections-overview.container';
-import CollectionPageContainer from '../collection/collection.container';
+import Spinner from '../../componenets/spinner/spinner';
+
+const CollectionsOverviewContainer = lazy(() => import('../../componenets/collections-overview/collections-overview.container'))
+const CollectionPageContainer = lazy(() => import('../collection/collection.container'))
 
 const ShopPage = ({ fetchCollectionsStart }) => {
   useEffect(() => {
@@ -19,16 +21,18 @@ const ShopPage = ({ fetchCollectionsStart }) => {
 
   return (
     <div>
-      <Routes>
-        <Route
-          exact
-          path={``}
-          element={
-            <CollectionsOverviewContainer isLoading={fetchCollectionsStart} />
-          }
-        />
-        <Route path={`/:collectionId`} element={<CollectionPageContainer />} />
-      </Routes>
+      <Suspense fallback={<Spinner />}>
+        <Routes>
+          <Route
+            exact
+            path={``}
+            element={
+              <CollectionsOverviewContainer isLoading={fetchCollectionsStart} />
+            }
+          />
+          <Route path={`/:collectionId`} element={<CollectionPageContainer />} />
+        </Routes>
+      </Suspense>
     </div>
   );
 };
