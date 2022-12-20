@@ -7,6 +7,7 @@ import { selectCurrentUser } from './redux/user/user.selector';
 import { checkUserSession } from './redux/user/user.actions';
 import { GlobalStyle } from './global.styles';
 import Spinner from './componenets/spinner/spinner';
+import ErrorBoundary from './componenets/error-boundary/error-boundary';
 
 const HomePage = lazy(() => import('./pages/homepage/homepage'));
 const ShopPage = lazy(() => import('./pages/shop/shopPage'));
@@ -27,20 +28,22 @@ const App = () => {
     <div>
       <GlobalStyle />
       <Header />
-      <Suspense fallback={<Spinner />}>
-        <Routes>
-          <Route exact path="/" element={<HomePage />} />
-          <Route exact path="/shop/*" element={<ShopPage />} />
-          <Route
-            exact
-            path={'/signin'}
-            element={
-              currentUser ? <Navigate to="/" /> : <SignInAndSignUpPage />
-            }
-          />
-          <Route exact path="/checkout" element={<CheckoutPage />} />
-        </Routes>
-      </Suspense>
+      <ErrorBoundary>
+        <Suspense fallback={<Spinner />}>
+          <Routes>
+            <Route exact path="/" element={<HomePage />} />
+            <Route exact path="/shop/*" element={<ShopPage />} />
+            <Route
+              exact
+              path={'/signin'}
+              element={
+                currentUser ? <Navigate to="/" /> : <SignInAndSignUpPage />
+              }
+            />
+            <Route exact path="/checkout" element={<CheckoutPage />} />
+          </Routes>
+        </Suspense>
+      </ErrorBoundary>
     </div>
   );
 };
