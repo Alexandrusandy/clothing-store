@@ -13,7 +13,6 @@ const CartDropdown = () => {
 
   const cartItems = useSelector(selectCartItems);
   const dispatch = useDispatch();
-
   return (
     <div className="cart-dropdown">
       <div className="cart-items">
